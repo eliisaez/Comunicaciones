@@ -1,0 +1,291 @@
+[
+    {
+        "id": "89b4d3cb.cde7d",
+        "type": "tab",
+        "label": "Flow 21",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "46b88d8d.5414e4",
+        "type": "http request",
+        "z": "89b4d3cb.cde7d",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://apidatos.ree.es/es/datos/mercados/precios-mercados-tiempo-real?start_date=2022-02-23T00:00&end_date=2022-02-23T23:59&time_trunc=hour",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 318,
+        "y": 170,
+        "wires": [
+            [
+                "74937f6b.f8ba"
+            ]
+        ]
+    },
+    {
+        "id": "879d3491.9a7d48",
+        "type": "inject",
+        "z": "89b4d3cb.cde7d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 145,
+        "y": 171,
+        "wires": [
+            [
+                "46b88d8d.5414e4"
+            ]
+        ]
+    },
+    {
+        "id": "74937f6b.f8ba",
+        "type": "json",
+        "z": "89b4d3cb.cde7d",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 484,
+        "y": 177,
+        "wires": [
+            [
+                "f9976e15.39217",
+                "b2397f60.e43ff"
+            ]
+        ]
+    },
+    {
+        "id": "f9976e15.39217",
+        "type": "debug",
+        "z": "89b4d3cb.cde7d",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 678,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "b2397f60.e43ff",
+        "type": "function",
+        "z": "89b4d3cb.cde7d",
+        "name": "",
+        "func": "msg.payload=msg.payload.included[0].attributes.values[13]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 520,
+        "y": 280,
+        "wires": [
+            [
+                "ae90256b.aef098"
+            ]
+        ]
+    },
+    {
+        "id": "ae90256b.aef098",
+        "type": "debug",
+        "z": "89b4d3cb.cde7d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "49565056.42f7",
+        "type": "http request",
+        "z": "89b4d3cb.cde7d",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://apidatos.ree.es/es/datos/balance/balance-electrico?start_date=2022-02-01T00:00&end_date=2022-02-28T23:59&time_trunc=day",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 310,
+        "y": 360,
+        "wires": [
+            [
+                "b63d9c25.33aa8"
+            ]
+        ]
+    },
+    {
+        "id": "ed1f6a7c.ab4528",
+        "type": "inject",
+        "z": "89b4d3cb.cde7d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 137,
+        "y": 361,
+        "wires": [
+            [
+                "49565056.42f7"
+            ]
+        ]
+    },
+    {
+        "id": "b63d9c25.33aa8",
+        "type": "json",
+        "z": "89b4d3cb.cde7d",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 476,
+        "y": 367,
+        "wires": [
+            [
+                "d480171f.7119d8"
+            ]
+        ]
+    },
+    {
+        "id": "d480171f.7119d8",
+        "type": "debug",
+        "z": "89b4d3cb.cde7d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 370,
+        "wires": []
+    },
+    {
+        "id": "283e78ed.6a3b18",
+        "type": "http request",
+        "z": "89b4d3cb.cde7d",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://apidatos.ree.es/es/datos/balance/balance-electrico?start_date=2022-02-01T00:00&end_date=2022-02-28T23:59&time_trunc=day",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 350,
+        "y": 440,
+        "wires": [
+            [
+                "d30a4908.d62aa8"
+            ]
+        ]
+    },
+    {
+        "id": "7f60802e.55f51",
+        "type": "inject",
+        "z": "89b4d3cb.cde7d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 177,
+        "y": 441,
+        "wires": [
+            [
+                "283e78ed.6a3b18"
+            ]
+        ]
+    },
+    {
+        "id": "d30a4908.d62aa8",
+        "type": "json",
+        "z": "89b4d3cb.cde7d",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 516,
+        "y": 447,
+        "wires": [
+            [
+                "68596f88.ff87e"
+            ]
+        ]
+    },
+    {
+        "id": "68596f88.ff87e",
+        "type": "debug",
+        "z": "89b4d3cb.cde7d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 450,
+        "wires": []
+    }
+]
